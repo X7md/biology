@@ -49,6 +49,7 @@ div[class*="container"]:not([data-dont]) {
     border: 1px solid #383838;
   }
   .card-body > div > img {
+    max-height: fit-content;
     max-width: 135px;
     object-fit: contain;
   }
