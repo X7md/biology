@@ -49,12 +49,11 @@ div[class*="container"]:not([data-dont]) {
     border: 1px solid #383838;
   }
   .card-body > div > img {
-    max-height: 75px;
+    max-height: 5em;
     max-width: 135px;
     object-fit: contain;
   }
   [data-image]{
-    display: inherit;
     margin: 0 auto 0 0;
     padding: 0;
   }
