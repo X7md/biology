@@ -54,7 +54,6 @@ div[class*="container"]:not([data-dont]) {
     object-fit: contain;
   }
   [data-image]{
-    display: inherit;
     margin-right: auto;
   }
   .card-text {
