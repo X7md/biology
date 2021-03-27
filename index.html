@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="static-files/biology-icon.svg" type="image/x-icon">
+    <title>أحياء وبيئة</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.rtl.min.css" integrity="sha384-4dNpRvNX0c/TdYEbYup8qbjvjaMrgUPh+g4I03CnNtANuv+VAvPL6LqdwzZKV38G" crossorigin="anonymous">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="stylesheet" href="static-files/fonts/fonts.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div id="app">
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark"><div class="container-fluid" data-dont><a href="#/" aria-current="page" class="navbar-brand exact-active active"><img src="static-files/biology.svg" alt="logo" height="65"></a> <button type="button" data-bs-toggle="collapse" ref="btn-close" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler"><span class="navbar-toggler-icon"></span></button> <div id="navbarText" class="collapse navbar-collapse"><ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item"><router-link class="nav-link" aria-current="page" to="/" exact>التحديات</router-link></li> 
+        <li class="nav-item"><router-link to="/page/about-project" class="nav-link" aria-current="page">حول المشروع</router-link></li>
+        <li class="nav-item"><a target="_blank" href="https://twitter.com/anb9" class="nav-link">عني، حمد</a></li></ul></div></div></nav>
+        <div class="container">
+          <div v-cloak v-on:click="setCookie('okay_close', 'true')" v-show="getCookie('okay_close') !== 'true'" class="alert alert-dark alert-dismissible mt-4 fade show" role="alert">
+            <strong>تنبيه!</strong> الموقع لا يزال قيد الإنشاء... قد لا تعمل بعض الاشياء بالشكل المطلوب.
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          </div>
+                <router-view></router-view>
+          </div>
+    </div>
+    <div>
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script>
+    <script src="https://unpkg.com/vue-router@2.0.0/dist/vue-router.js"></script>
+    <script src="js/vueApp.js"></script>
+</body>
+</html>

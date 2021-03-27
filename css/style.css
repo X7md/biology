@@ -1,0 +1,110 @@
+body {
+    color:#ffffff;
+    background-color: #1e1e1e;
+    font-family: Sahel;
+    direction: rtl;
+  }
+  [v-cloak] {
+    display: none;
+  }
+div[class*="container"]:not([data-dont]) {
+    min-height: 70vh;
+  }
+.iconFooter {
+    margin-right: 5px;
+}
+.navbar-toggler-icon {
+  background-image: url(data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%280, 0, 0, 0.55%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e);
+    }
+    
+    i[class*="material"] {
+        user-select: none;
+    }
+    div.card {
+        transition-duration: 0.25s;
+        transition-timing-function: ease-in-out;
+        margin: .5rem auto;
+    }
+    div.card:hover {
+      transform: scale(1.05);
+    }
+    ul.navbar-nav.me-auto {
+        padding-right: .5em;
+    }
+    .navbar-dark .navbar-toggler {
+        color: transparent;
+        border-color: transparent;
+    }
+      a.nav-link:hover {
+        color: #ffffff !important;
+    }
+    .navbar-toggler:focus, .btn:focus {
+        box-shadow: none;
+    }
+  [class*="input"] > button {
+    color: #ffffff;
+    border: 1px solid #ffffff1f;
+  }
+  input.form-control {
+    border: 1px solid #383838;
+  }
+  .card-body > div > img {
+    max-height: 120px;
+    max-width: 135px;
+    object-fit: contain;
+  }
+  [data-image]{
+    display: inherit;
+    margin-right: auto;
+  }
+  .card-text {
+    color: #ffffff;
+    font-size: small;
+  }
+  .bi {
+      width: 1em;
+      height: 1em;
+      vertical-align: -0.25em;
+  }
+  .info-body {
+      padding: 1.25rem;
+  }
+  .card-body {
+    padding: inherit;
+  }
+  a.goto, a.goto:visited, a:hover {
+    color: unset !important;
+    text-decoration: none;
+    cursor: pointer;
+  }
+  card {
+    margin-top: 1em;
+  }
+  .pagination > li > a
+{
+    background-color: #212529;
+    color: #ffffff;
+    border: solid 1px #5a41816c !Important;
+}
+
+.pagination > li > a:focus,
+.pagination > li > a:hover,
+.pagination > li > span:focus,
+.pagination > li > span:hover,
+#button-search:hover
+{
+    color: #ffffff;
+    background-color: #ffffff4d !important;
+}
+
+.pagination > .active > a
+{
+    color: white;
+    background-color: #5A4181 !Important;
+}
+
+.pagination > .active > a:hover
+{
+    background-color: #d8bfff !Important;
+    border: solid 1px #d8bfff;
+}
