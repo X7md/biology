@@ -80,6 +80,9 @@ div[class*="container"]:not([data-dont]) {
     text-decoration-line: none;
     color: inherit;
   }
+  .alert > p {
+    margin-bottom: 0;
+  }
   card {
     margin-top: 1em;
   }
