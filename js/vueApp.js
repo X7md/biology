@@ -100,7 +100,13 @@ var page = Vue.component('vx-page',{
   methods: {
     do_: async function () {
       let _page = await fetch("pages/" + this.$route.params.page_name + ".html", {cache: "no-cache"});
+    console.log(_page.status)
+    if (_page.status !== 404){
       this.data_ = await _page.text();
+    } else {
+      this.data_ = "<p class='text-center'>عذرًا يبدو أن الصفحة التي طلبتها، غير موجودة!</p>";
+    }
+     
     }
   },
     template: `<div class="row">
