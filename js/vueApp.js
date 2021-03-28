@@ -94,7 +94,7 @@ var page = Vue.component('vx-page',{
       data_: ""
     }
   },
-  cerated() {
+  mounted() {
     this.$nextTick(function () {
       this.do_();
     })
@@ -106,20 +106,13 @@ var page = Vue.component('vx-page',{
   },
   methods: {
     do_: async function () {
-      try {
-        let _page = await fetch("pages/" + this.$route.params.page_name + ".html", {cache: "no-cache"});
-    console.log(_page.status)
+    let _page = await fetch("pages/" + this.$route.params.page_name + ".html", {cache: "no-cache"});
     if (_page.status !== 404){
       this.data_ = await _page.text();
     } else {
       this.data_ = "<p class='text-center'>عذرًا يبدو أن الصفحة التي طلبتها، غير موجودة!</p>";
-    }
-      } catch (error) {
-        
+    }     
       }
-    
-     
-    }
   },
     template: `<div class="row">
     <div class="mt-4">
