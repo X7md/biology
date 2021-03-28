@@ -35,8 +35,8 @@ let mainPage = Vue.component('vx-main',{
     data: function () {
         return {
           arr: [
-            {"title": "نسبة المياه العذبة على كوكب الأرض",
-              "pageNambuer": "علم بيئة، الصفحة 2",
+            {"title": "المخلوقات الحية وعلاقاتها المتبادلة",
+              "pageNambuer": "علم بيئة، الصفحة 12 - 21",
               "imageSrc":"https://wallpaperaccess.com/full/3971906.jpg",
               "link": "/"
             },
@@ -88,8 +88,31 @@ var search_ = Vue.component('vx-search',{
     </div>`
 })
 
+var page = Vue.component('vx-page',{
+  data() {
+    return {
+      data_: ""
+    }
+  },
+  mounted() {
+    this.do_();
+  },
+  methods: {
+    do_: async function () {
+      let _page = await fetch("pages/" + this.$route.params.page_name + ".html");
+      this.data_ = await _page.text();
+    }
+  },
+    template: `<div class="row">
+    <div class="mt-4">
+      <div v-html="data_"></div>
+    </div>
+    </div>`
+})
+
 const routes = [
-    {path: '/', component: mainPage}
+    {path: '/', component: mainPage},
+    {path: '/page/:page_name', component: page}
 ]
 
 const router = new VueRouter({

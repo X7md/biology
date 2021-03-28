@@ -66,7 +66,7 @@ div[class*="container"]:not([data-dont]) {
       vertical-align: -0.25em;
   }
   .info-body {
-      padding: 1.25rem;
+      padding: 1rem .75rem;
   }
   .card-body {
     padding: inherit;
@@ -75,6 +75,10 @@ div[class*="container"]:not([data-dont]) {
     color: unset !important;
     text-decoration: none;
     cursor: pointer;
+  }
+  button > a {
+    text-decoration-line: none;
+    color: inherit;
   }
   card {
     margin-top: 1em;
