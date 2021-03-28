@@ -99,7 +99,7 @@ var page = Vue.component('vx-page',{
   },
   methods: {
     do_: async function () {
-      let _page = await fetch("pages/" + this.$route.params.page_name + ".html");
+      let _page = await fetch("pages/" + this.$route.params.page_name + ".html", {cache: "no-cache"});
       this.data_ = await _page.text();
     }
   },
