@@ -110,7 +110,7 @@ var page = Vue.component('vx-page',{
     if (_page.status !== 404){
       this.data_ = await _page.text();
     } else {
-      this.data_ = "<p class='text-center'>عذرًا يبدو أن الصفحة التي طلبتها، غير موجودة!</p>";
+      this.data_ = "<div><p class='text-center'>عذرًا يبدو أن الصفحة التي طلبتها، غير موجودة!</p></div>";
     }     
       }
   },
@@ -142,6 +142,14 @@ var app = new Vue({
       },
       setCookie: function(name, value){
         document.cookie = name + '=' + value + ';';
+      },
+      trn_do: function(){
+        document.body.style.overflow = "hidden";
+      }, 
+      trn_end: function(){
+        this.$nextTick(function () {
+          document.body.style.overflow = "auto";
+        })
       }
     }
 }).$mount('#app')

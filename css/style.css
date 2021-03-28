@@ -50,6 +50,7 @@ div[class*="container"]:not([data-dont]) {
   }
   .card-body > div > img {
     max-width: 150px;
+    width: 150px;
     object-fit: cover;
   }
   [data-image]{
@@ -83,7 +84,7 @@ div[class*="container"]:not([data-dont]) {
   .alert > p {
     margin-bottom: 0;
   }
-  card {
+  .card {
     margin-top: 1em;
   }
   .pagination > li > a
@@ -113,4 +114,15 @@ div[class*="container"]:not([data-dont]) {
 {
     background-color: #d8bfff !Important;
     border: solid 1px #d8bfff;
+}
+.slide-fade-enter-active {
+  transition: all .3s ease;
+}
+.slide-fade-leave-active {
+  transition: all .10s cubic-bezier(1.0, 0.5, 0.8, 1.0);
+}
+.slide-fade-enter, .slide-fade-leave-to
+/* .slide-fade-leave-active below version 2.1.8 */ {
+  transform: translateX(10px);
+  opacity: 0;
 }
