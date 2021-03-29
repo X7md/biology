@@ -4,7 +4,7 @@ let mainPage = Vue.component('vx-main',{
     <vx-search v-on:custom="customHandler"></vx-search>
     <section class="row justify-content-center">
             <div class="col-lg-4 col-md-6"  v-for="value in arr">
-               <router-link class="goto" :to="value.link"> <div class="card mt-2 bg-dark"> <div class="card-body d-inline-flex">
+               <router-link class="goto" :to="'challenge/' + value.id"> <div class="card mt-2 bg-dark"> <div class="card-body d-inline-flex">
               <div class="info-body"><p class="card-text font-weight-light"v-text="value.title"></p></div><div data-image><img :src="value.imageSrc" v-on:error="ImageError" class="img-fluid" alt="Responsive image"></div>
           </div>
             <div class="card-footer text-muted">
@@ -38,12 +38,12 @@ let mainPage = Vue.component('vx-main',{
             {"title": "المخلوقات الحية وعلاقاتها المتبادلة",
               "pageNambuer": "علم بيئة، الصفحة 12 - 21",
               "imageSrc":"https://wallpaperaccess.com/full/3971906.jpg",
-              "link": "/"
+              "id": 1
             },
             {"title": "نسبة المياه العذبة على كوكب الأرض",
               "pageNambuer": "علم بيئة، الصفحة 2",
               "imageSrc":"",
-              "link": "/"
+              "id": 2
             }
           ],
           data_: null
@@ -66,7 +66,7 @@ let mainPage = Vue.component('vx-main',{
       }
     })
 
-var search_ = Vue.component('vx-search',{
+let search_ = Vue.component('vx-search',{
   data() {
     return {
       text: null
@@ -88,7 +88,7 @@ var search_ = Vue.component('vx-search',{
     </div>`
 })
 
-var page = Vue.component('vx-page',{
+let page = Vue.component('vx-page',{
   data() {
     return {
       data_: ""
@@ -121,9 +121,48 @@ var page = Vue.component('vx-page',{
     </div>`
 })
 
+var challenge = Vue.component('vx-challenge',{
+  data() {
+    return {
+      text: null
+    }
+  },
+  methods: {
+    check_: function (e) {
+      console.log(e.target.reportValidity())
+    }
+  },
+    template: `<div class="row justify-content-center">
+    <div class="col-lg-7 me-auto">
+      <form class="card bg-dark p-4" v-on:submit.prevent="check_($event)">
+      <label for="exampleFormControlInput1" class="form-label fs-4 fw-bold">ما هو علم البيئة؟</label>
+      <div class="form-check">
+      <!--Check-->
+      <div class="form-check">
+      <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios1" value="" checked>
+      <label class="form-check-label" for="gridRadios1">
+        [[]]
+      </label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios2" value="">
+      <label class="form-check-label" for="gridRadios2">
+        [[]]
+      </label>
+    </div>
+      <!--Check-->
+      </div>
+    <div class="col-12 mt-3">
+      <button type="submit" class="btn btn-light">أرسال</button>
+    </div>
+      </form>
+    </div>
+    </div>`
+})
 const routes = [
     {path: '/', component: mainPage},
-    {path: '/page/:page_name', component: page}
+    {path: '/page/:page_name', component: page},
+    {path: '/challenge/:id', component: challenge}
 ]
 
 const router = new VueRouter({
