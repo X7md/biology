@@ -3,6 +3,8 @@ let mainPage = Vue.component('vx-main',{
     <div>
     <vx-search v-on:custom="customHandler"></vx-search>
     <section class="row justify-content-center">
+    <div><p class="text-center"v-if="arr.length == 0 && !is_done">جاري التحميل...</p></div>
+    <div><p class="text-center"v-if="arr.length == 0 && is_done">هناك خطب ما... يبدو أن هناك مشكلة.</p></div>
             <div class="col-lg-4 col-md-6"  v-for="value in arr">
                <router-link class="goto" :to="'challenge/' + value.id"> <div class="card mt-2 bg-dark"> <div class="card-body d-inline-flex">
               <div class="info-body"><p class="card-text font-weight-light"v-text="value.title"></p></div><div data-image><img :src="value.imageSrc" v-on:error="ImageError" class="img-fluid" alt="Responsive image"></div>
@@ -35,7 +37,8 @@ let mainPage = Vue.component('vx-main',{
     data: function () {
         return {
           arr: [],
-          data_: null
+          data_: null,
+          is_done: false
         }
       },
       methods: {
@@ -46,9 +49,14 @@ let mainPage = Vue.component('vx-main',{
           e.target.src = "static-files/image-404.png"
         },
         getData: async function () {
-          let _page = await fetch("https://script.google.com/macros/s/AKfycbzvhspgE7zujdr7CYNuTv9J9Gi4tlqwy0VQUcYB_sWyTLXBgcE2uT18ig5VCmgR1lH-/exec?type=feed", {cache: "no-cache"});
+          try {
+            let _page = await fetch("https://script.google.com/macros/s/AKfycbzvhspgE7zujdr7CYNuTv9J9Gi4tlqwy0VQUcYB_sWyTLXBgcE2uT18ig5VCmgR1lH-/exec?type=feed", {cache: "no-cache"});
           if (_page.ok){
             this.arr = await _page.json();
+          }
+          this.is_done = true;
+          } catch (error) {
+          this.is_done = true;
           }
         },
           closeBox: function(element_){
