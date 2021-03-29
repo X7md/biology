@@ -34,18 +34,7 @@ let mainPage = Vue.component('vx-main',{
 </div>`,
     data: function () {
         return {
-          arr: [
-            {"title": "المخلوقات الحية وعلاقاتها المتبادلة",
-              "pageNambuer": "علم بيئة، الصفحة 12 - 21",
-              "imageSrc":"",
-              "id": 1
-            },
-            {"title": "Test",
-              "pageNambuer": "علم بيئة، الصفحة *",
-              "imageSrc":"",
-              "id": 2
-            }
-          ],
+          arr: [],
           data_: null
         }
       },
@@ -55,15 +44,21 @@ let mainPage = Vue.component('vx-main',{
         },
         ImageError: function(e){
           e.target.src = "static-files/image-404.png"
-        }
+        },
+        getData: async function () {
+          let _page = await fetch("https://script.google.com/macros/s/AKfycbzvhspgE7zujdr7CYNuTv9J9Gi4tlqwy0VQUcYB_sWyTLXBgcE2uT18ig5VCmgR1lH-/exec?type=feed", {cache: "no-cache"});
+          if (_page.ok){
+            this.arr = await _page.json();
+          }
+        },
+          closeBox: function(element_){
+          let alert = bootstrap.Alert.getInstance(element_.target);
+          alert.close();
+          }
       },
-      updated: function () {
-        this.$nextTick(function () {
-          var alertNode = this.$refs["alert"]
-          var alert = bootstrap.Alert.getInstance(alertNode)
-          this.$refs[".btn-close"].addEventListener("click", e => {alert.close()})
-        })
-      }
+      mounted() {
+        this.getData()
+      },
     })
 
 let search_ = Vue.component('vx-search',{
