@@ -37,11 +37,11 @@ let mainPage = Vue.component('vx-main',{
           arr: [
             {"title": "المخلوقات الحية وعلاقاتها المتبادلة",
               "pageNambuer": "علم بيئة، الصفحة 12 - 21",
-              "imageSrc":"https://wallpaperaccess.com/full/3971906.jpg",
+              "imageSrc":"",
               "id": 1
             },
-            {"title": "نسبة المياه العذبة على كوكب الأرض",
-              "pageNambuer": "علم بيئة، الصفحة 2",
+            {"title": "Test",
+              "pageNambuer": "علم بيئة، الصفحة *",
               "imageSrc":"",
               "id": 2
             }
