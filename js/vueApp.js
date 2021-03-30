@@ -127,33 +127,45 @@ let page = Vue.component('vx-page',{
 var challenge = Vue.component('vx-challenge',{
   data() {
     return {
-      text: null
+      questions:[],
+      is_done: false
     }
+  },
+  mounted() {
+    this.getData();
   },
   methods: {
     check_: function (e) {
-      console.log(e.target.reportValidity())
-    }
+      console.log(e.target.reportValidity());
+    },
+    getData: async function () {
+      try {
+        let _page = await fetch("https://script.google.com/macros/s/AKfycbzvhspgE7zujdr7CYNuTv9J9Gi4tlqwy0VQUcYB_sWyTLXBgcE2uT18ig5VCmgR1lH-/exec?type=challenges", {cache: "no-cache"});
+      if (_page.ok){
+        this.questions = await _page.json();
+      }
+      this.is_done = true;
+      } catch (error) {
+      this.is_done = true;
+      }
+    },
   },
     template: `<div class="row justify-content-center">
-    <div class="col-lg-7 me-auto">
+    <div v-if="questions.length == 0"><p class="text-center">جاري التحميل...</p></div>
+    <div v-show="questions.length > 0 && is_done" class="col-lg-7 me-auto">
       <form class="card bg-dark p-4" v-on:submit.prevent="check_($event)">
-      <label for="exampleFormControlInput1" class="form-label fs-4 fw-bold">ما هو علم البيئة؟</label>
+      <div v-for="value in questions">
+      <label for="exampleFormControlInput1" class="form-label fs-4 fw-bold">{{value.qText}}</label>
       <div class="form-check">
       <!--Check-->
-      <div class="form-check">
-      <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios1" value="" checked>
-      <label class="form-check-label" for="gridRadios1">
-        [[]]
-      </label>
-    </div>
-    <div class="form-check">
-      <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios2" value="">
-      <label class="form-check-label" for="gridRadios2">
-        [[]]
+      <div class="form-check" v-for="(ans, i) in value.choice">
+      <input class="form-check-input" type="radio" name="gridRadios" :id="'gridRadios' + i" :value="ans.letter">
+      <label class="form-check-label" :for="'gridRadios' + i">
+        {{ans.text}}
       </label>
     </div>
       <!--Check-->
+      </div>
       </div>
     <div class="col-12 mt-3">
       <button type="submit" class="btn btn-light">أرسال</button>

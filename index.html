@@ -20,12 +20,12 @@
         <li class="nav-item"><router-link to="/page/about-project" class="nav-link" aria-current="page">حول المشروع</router-link></li>
         <li class="nav-item"><a target="_blank" href="https://twitter.com/anb9" class="nav-link">عني، حمد</a></li></ul></div></div></nav>
         <div class="container">
-          <div v-cloak v-on:click="setCookie('okay_close', 'true')" v-show="getCookie('okay_close') !== 'true'" class="alert alert-dark alert-dismissible mt-4 fade show" role="alert">
+          <div v-cloak v-on:click="setCookie('okay_close', 'true')" v-show="getCookie('okay_close') !== 'true'" class="alert alert-dark col-lg-5 alert-dismissible fade mt-4 show">
             <strong>تنبيه!</strong> الموقع لا يزال قيد الإنشاء... قد لا تعمل بعض الاشياء بالشكل المطلوب.
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close" v-on:click="closeBox($event)"></button>
           </div>
           <transition name="slide-fade" v-on:after-leave="trn_end" v-on:before-enter="trn_do">
-              <router-view  :key="$route.path"></router-view>
+              <router-view :key="$route.path"></router-view>
           </transition>
           </div>
     </div>
