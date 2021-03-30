@@ -151,7 +151,7 @@ var challenge = Vue.component('vx-challenge',{
     },
   },
     template: `<div class="row justify-content-center">
-    <div v-if="questions.length == 0"><p class="text-center">جاري التحميل...</p></div>
+    <div class="p-4" v-if="questions.length == 0"><p class="text-center">جاري التحميل...</p></div>
     <div v-show="questions.length > 0 && is_done" class="col-lg-7 me-auto">
       <form class="card bg-dark p-4" v-on:submit.prevent="check_($event)">
       <div v-for="value in questions">
