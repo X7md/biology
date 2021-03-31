@@ -1,4 +1,5 @@
 let mainPage = Vue.component('vx-main',{
+  name: 'challenges',
   template: `
     <div>
     <vx-search v-on:custom="customHandler"></vx-search>
@@ -154,13 +155,13 @@ var challenge = Vue.component('vx-challenge',{
     <div class="p-4" v-if="questions.length == 0"><p class="text-center">جاري التحميل...</p></div>
     <div v-show="questions.length > 0 && is_done" class="col-lg-7 me-auto">
       <form class="card bg-dark p-4" v-on:submit.prevent="check_($event)">
-      <div v-for="value in questions">
+      <div v-for="(value, q_index) in questions">
       <label for="exampleFormControlInput1" class="form-label fs-4 fw-bold">{{value.qText}}</label>
       <div class="form-check">
       <!--Check-->
       <div class="form-check" v-for="(ans, i) in value.choice">
-      <input class="form-check-input" type="radio" name="gridRadios" :id="'gridRadios' + i" :value="ans.letter">
-      <label class="form-check-label" :for="'gridRadios' + i">
+      <input class="form-check-input" type="radio" :id="'Radios' + i" :name="q_index" :value="ans.letter">
+      <label class="form-check-label" :for="'Radios' + i">
         {{ans.text}}
       </label>
     </div>
@@ -175,7 +176,8 @@ var challenge = Vue.component('vx-challenge',{
     </div>`
 })
 const routes = [
-    {path: '/', component: mainPage},
+    {path: '/', redirect: '/challenges'},
+    {path: '/challenges', component: mainPage},
     {path: '/page/:page_name', component: page},
     {path: '/challenge/:id', component: challenge}
 ]

@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name=" theme-color" content="#212529">
     <link rel="shortcut icon" href="static-files/biology-icon.svg" type="image/x-icon">
     <title>أحياء وبيئة</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.rtl.min.css" integrity="sha384-4dNpRvNX0c/TdYEbYup8qbjvjaMrgUPh+g4I03CnNtANuv+VAvPL6LqdwzZKV38G" crossorigin="anonymous">
@@ -15,7 +16,7 @@
 <body>
     <div id="app">
       <nav class="navbar navbar-expand-lg navbar-dark bg-dark"><div class="container-fluid" data-dont><a href="#/" aria-current="page" class="navbar-brand exact-active active"><img src="static-files/biology.svg" alt="logo" height="65"></a> <button type="button" data-bs-toggle="collapse" ref="btn-close" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler"><span class="navbar-toggler-icon"></span></button> <div id="navbarText" class="collapse navbar-collapse"><ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item"><router-link class="nav-link" aria-current="page" to="/" exact>التحديات</router-link></li> 
+        <li class="nav-item"><router-link class="nav-link" aria-current="page" to="/challenges">التحديات</router-link></li> 
         <li class="nav-item"><router-link to="/page/worksheet" class="nav-link" aria-current="page">أوراق العمل</router-link></li>
         <li class="nav-item"><router-link to="/page/about-project" class="nav-link" aria-current="page">حول المشروع</router-link></li>
         <li class="nav-item"><a target="_blank" href="https://twitter.com/anb9" class="nav-link">عني، حمد</a></li></ul></div></div></nav>
@@ -25,7 +26,9 @@
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close" v-on:click="closeBox($event)"></button>
           </div>
           <transition name="slide-fade" v-on:after-leave="trn_end" v-on:before-enter="trn_do">
+            <keep-alive include="challenges">
               <router-view :key="$route.path"></router-view>
+            </keep-alive>
           </transition>
           </div>
     </div>
