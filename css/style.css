@@ -32,7 +32,7 @@ div[class*="container"]:not([data-dont]) {
         transition-timing-function: ease-in-out;
         margin: .5rem auto;
     }
-    div.card:hover {
+    *:not(form, [data-form]) > div.card:hover {
       transform: scale(1.05);
     }
     ul.navbar-nav.me-auto {
@@ -134,6 +134,16 @@ div[class*="container"]:not([data-dont]) {
   transform: translateX(25px);
   opacity: 0;
 }
-input[type="radio"], input[type="check"]{
+div[class*="form-"].ans {
+  margin: 0.5rem auto;
+}
+div[class*="form-"] > label {
+  background-color: rgb(0 0 0 / 17%);
+  border-radius: 15px;
+  padding-top: .3em;
+  padding-right: .3em;
+  font-size: small;
+}
+input[type="radio"], input[type="check"], label[for]{
   cursor: pointer;
 }

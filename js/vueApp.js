@@ -82,7 +82,7 @@ let search_ = Vue.component('vx-search',{
     }
   },
     template: `<div class="row justify-content-center">
-    <div class="mt-4 col-10 col-lg-3">
+    <div class="mt-4 col-10 col-lg-3 col-md-8">
     <div class="input-group mb-3">
 <input type="text" v-model="text" class="form-control text-light bg-dark" placeholder="ابحث في التحديات..." aria-label="Saerch" aria-describedby="button-addon2">
   <button class="btn btn-outline-dark bg-dark" type="button" v-on:click="do_()" id="button-search"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-image-fill"><path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"></path>
@@ -138,6 +138,9 @@ var challenge = Vue.component('vx-challenge',{
   methods: {
     check_: function (e) {
       console.log(e.target.reportValidity());
+      let object = new Object();
+      (new FormData(this.$refs.form_).forEach((value, key) => object[key] = value));
+      console.log(JSON.stringify(object));
     },
     getData: async function () {
       try {
@@ -152,14 +155,17 @@ var challenge = Vue.component('vx-challenge',{
     },
   },
     template: `<div class="row justify-content-center">
+    <div class="p-2"></div>
     <div class="p-4" v-if="questions.length == 0"><p class="text-center">جاري التحميل...</p></div>
     <div v-show="questions.length > 0 && is_done" class="col-lg-7 me-auto">
-      <form class="card bg-dark p-4" v-on:submit.prevent="check_($event)">
-      <div v-for="(value, q_index) in questions">
+      <form v-on:submit.prevent="check_($event)" ref="form_">
+      <div data-form>
+      <!--Card-->
+      <div v-for="(value, q_index) in questions" class="card bg-dark p-4">
       <label for="exampleFormControlInput1" class="form-label fs-4 fw-bold">{{value.qText}}</label>
       <div class="form-check">
       <!--Check-->
-      <div class="form-check" v-for="(ans, i) in value.choice">
+      <div class="form-check ans" v-for="(ans, i) in value.choice">
       <input class="form-check-input" type="radio" :id="'Radios' + i" :name="q_index" :value="ans.letter">
       <label class="form-check-label" :for="'Radios' + i">
         {{ans.text}}
@@ -168,7 +174,9 @@ var challenge = Vue.component('vx-challenge',{
       <!--Check-->
       </div>
       </div>
-    <div class="col-12 mt-3">
+    <!--Card-->
+    </div>
+    <div class="col-12 mt-3 text-end">
       <button type="submit" class="btn btn-light">أرسال</button>
     </div>
       </form>
