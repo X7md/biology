@@ -137,10 +137,13 @@ var challenge = Vue.component('vx-challenge',{
   },
   methods: {
     check_: function (e) {
-      console.log(e.target.reportValidity());
-      let object = new Object();
+      if(e.target.reportValidity()){
+        let object = new Object();
       (new FormData(this.$refs.form_).forEach((value, key) => object[key] = value));
       console.log(JSON.stringify(object));
+      }else {
+
+      }
     },
     getData: async function () {
       try {
@@ -166,8 +169,8 @@ var challenge = Vue.component('vx-challenge',{
       <div class="form-check">
       <!--Check-->
       <div class="form-check ans" v-for="(ans, i) in value.choice">
-      <input class="form-check-input" type="radio" :id="'Radios' + i" :name="q_index" :value="ans.letter">
-      <label class="form-check-label" :for="'Radios' + i">
+      <input class="form-check-input" type="radio" :id="'Radios' + q_index + '_' + i" :name="q_index" :value="ans.letter" required>
+      <label class="form-check-label" :for="'Radios' + q_index + '_' + i">
         {{ans.text}}
       </label>
     </div>
